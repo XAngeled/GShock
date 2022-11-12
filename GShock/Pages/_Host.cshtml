@@ -1,0 +1,15 @@
+﻿@page "/"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@namespace GShock.Pages
+
+<html>
+    <head>
+        <base href="~/" />
+        <link rel="stylesheet" href="GShock.css" />
+    </head>
+    <body>
+        <component type="typeof(App)"
+                   render-mode="ServerPrerendered" />
+        <script src="_framework/blazor.server.js"></script>
+    </body>
+</html>

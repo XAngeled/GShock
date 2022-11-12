@@ -1,0 +1,9 @@
+﻿@foreach (var button in Buttons)
+{
+    <button class="button-19" @onmousedown=button.Press @onmouseup=button.Release>@button.Title</button> 
+}
+
+@code {
+    [Parameter]
+    public List<IButton> Buttons { get; set; }
+}

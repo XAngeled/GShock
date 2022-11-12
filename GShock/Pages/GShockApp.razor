@@ -1,0 +1,49 @@
+﻿@namespace GShock.Pages
+@page "/"
+<h1>GSHOCK</h1>
+<h2>@output</h2>
+
+<ModeButtons Buttons=selectedModeButtons></ModeButtons>
+<button @onclick=CycleMode>Cycle mode</button>
+
+
+@code {
+    public List<IButton> selectedModeButtons;
+    private Watch watch;
+    private string output;
+    private ModeButtonsFactory buttonsFactory;
+
+    private ModeButtonsFactory BootstrapFactory()
+    {
+        return new ModeButtonsFactory(
+            new Dictionary<Type, IModeButtonsStrategy>() 
+            {
+                { typeof(TimeMode), new SimpleModeButtonsStrategy() },
+                { typeof(CounterMode), new SimpleModeButtonsStrategy() }
+            }
+        );
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        buttonsFactory = BootstrapFactory();
+        watch = WatchFactory.Build();
+        output = watch.ToString();
+        watch.dataChanged += UpdateOutput;
+        selectedModeButtons = buttonsFactory.GetButtons(watch.CurrentMode);
+
+    }
+
+    private void UpdateOutput()
+    {
+        output = watch.ToString();
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void CycleMode()
+    {
+        watch.CycleMode();
+        selectedModeButtons = buttonsFactory.GetButtons(watch.CurrentMode);
+    }
+}

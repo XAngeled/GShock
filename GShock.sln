@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GShock", "GShock\GShock.csproj", "{78CF019C-6969-4FE8-9DF2-3D0574B8C5C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Watch", "Watch\Watch.csproj", "{9BC38CDF-120B-4CCF-992B-F00B64997B5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{78CF019C-6969-4FE8-9DF2-3D0574B8C5C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78CF019C-6969-4FE8-9DF2-3D0574B8C5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78CF019C-6969-4FE8-9DF2-3D0574B8C5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78CF019C-6969-4FE8-9DF2-3D0574B8C5C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BC38CDF-120B-4CCF-992B-F00B64997B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BC38CDF-120B-4CCF-992B-F00B64997B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BC38CDF-120B-4CCF-992B-F00B64997B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BC38CDF-120B-4CCF-992B-F00B64997B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E53C4905-0063-4592-A106-625DDEA8499E}
+	EndGlobalSection
+EndGlobal
