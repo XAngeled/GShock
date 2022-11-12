@@ -8,6 +8,7 @@ namespace Watch.Modes
     /// </summary>
     public class TimeMode : IMode
     {
+        public string Name { get; set; }
         public event Action? dataChanged;
 
         private double _updateInterval;
@@ -17,6 +18,7 @@ namespace Watch.Modes
 
         public TimeMode(TimeOffset timeOffset, List<IModeAction<TimeOffset>> actions, double updateInterval)
         {
+            Name = "Time";
             _timeOffset = timeOffset;
             _actions = actions;
             _updateInterval = updateInterval;

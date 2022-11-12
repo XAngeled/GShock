@@ -1,0 +1,119 @@
+﻿.cycle-button {
+    color: blue;
+    background-color: red;
+}
+
+
+::deep .button-feature {
+    appearance: button;
+    background-color: #1899D6;
+    border: solid thin;
+    border-radius: 16px;
+    border-width: 1px 1px 4px 1px;
+    border-color: #1374a3;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 20em;
+}
+
+::deep .button-feature:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+::deep .button-feature:main,
+::deep .button-feature:focus {
+    user-select: auto;
+}
+
+::deep .button-feature:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+::deep .button-feature:disabled {
+    cursor: auto;
+}
+
+
+.button-cycle {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+}
+
+.button-cycle:hover,
+.button-cycle:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+}
+
+.button-cycle:active {
+    opacity: .5;
+}
+
+.output {
+    border-color: #6DA34D;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 999px;
+    display: inline;
+    font-size: 5rem;
+    text-align: center;
+    height: 10vh;
+    line-height: 10vh;
+    color: #56445D;
+    font-family: Courier New, Courier, monospace;
+    font-weight: 700;
+    #text-shadow: 5px 5px 0px #5a0000, 10px 10px 0px #efa032, 15px 15px 0px #46b59b, 20px 20px 0px #017e7f, 25px 25px 0px #052939, 30px 30px 0px #c11a2b, 35px 35px 0px #c11a2b, 40px 40px 0px #c11a2b, 45px 45px 0px #c11a2b;
+}

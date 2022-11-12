@@ -12,8 +12,11 @@ namespace Watch.Modes
         private List<IModeAction<Counter>> _actions;
         private Counter _counter;
 
+        public string Name { get; set; }
+
         public CounterMode(List<IModeAction<Counter>> actions, Counter counter)
         {
+            Name = "Counter";
             _actions = actions;
             _counter = counter;
         }

@@ -1,10 +1,20 @@
 ﻿@namespace GShock.Pages
 @page "/"
-<h1>GSHOCK</h1>
-<h2>@output</h2>
+<div style="text-align: center;">
+    <h1 style="font-family: 'Arial Rounded MT'; font-size:5rem; color: #548687;">GSHOCK</h1>
+    <h2 class="output" style="font-size:20px">Mode: @watch.CurrentMode.Name</h2>
+    <br />
+    <h2 class="output">@output</h2>
+    <br /><br /><br />
+    <div>
+        <ModeButtons Buttons=selectedModeButtons></ModeButtons>
+    </div>
+    <br />
+    <button class="button-cycle" @onclick=CycleMode>Cycle mode</button>
 
-<ModeButtons Buttons=selectedModeButtons></ModeButtons>
-<button @onclick=CycleMode>Cycle mode</button>
+</div>
+
+
 
 
 @code {
