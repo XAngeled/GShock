@@ -6,11 +6,11 @@
     <br />
     <h2 class="output">@output</h2>
     <br /><br /><br />
+    <button class="button-cycle" @onclick=CycleMode>Cycle mode</button>
     <div>
         <ModeButtons Buttons=selectedModeButtons></ModeButtons>
     </div>
     <br />
-    <button class="button-cycle" @onclick=CycleMode>Cycle mode</button>
 
 </div>
 
@@ -22,6 +22,7 @@
     private Watch watch;
     private string output;
     private ModeButtonsFactory buttonsFactory;
+    //private RenderFragment output;
 
     private ModeButtonsFactory BootstrapFactory()
     {

@@ -1,4 +1,5 @@
-﻿namespace Watch.Modes.Actions.TimeOffsetActions
+﻿using Utilities;
+namespace Watch.Modes.Actions.TimeOffsetActions
 {
     public class AddSecondAction : IModeAction<TimeOffset>
     {

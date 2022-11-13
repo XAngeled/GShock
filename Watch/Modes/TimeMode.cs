@@ -1,45 +1,46 @@
 ﻿using System.Timers;
+using Utilities;
 using Watch.Modes.Actions;
 
 namespace Watch.Modes
 {
-    /// <summary>
-    /// A mode that represents a normal clock.
-    /// </summary>
     public class TimeMode : IMode
     {
         public string Name { get; set; }
         public event Action? dataChanged;
 
-        private double _updateInterval;
-        private System.Timers.Timer _outputUpdater;
-        private TimeOffset _timeOffset;
-        private List<IModeAction<TimeOffset>> _actions;
+        private readonly double _updateInterval;
+        private readonly System.Timers.Timer _outputUpdater;
+        private readonly TimeOffset _timeOffset;
+        private Clock _clock;
+        private List<IModeAction<Clock>> _actions;
 
-        public TimeMode(TimeOffset timeOffset, List<IModeAction<TimeOffset>> actions, double updateInterval)
+        public TimeMode(TimeOffset timeOffset, List<IModeAction<Clock>> actions, double updateInterval, Clock clock)
         {
             Name = "Time";
             _timeOffset = timeOffset;
             _actions = actions;
             _updateInterval = updateInterval;
+            _clock = clock;
             _outputUpdater = new System.Timers.Timer(_updateInterval);
             InitializeTimer();
         }
 
         public void ActivateAction(string actionName)
         {
-            IEnumerable<IModeAction<TimeOffset>> actions = from _action in _actions
+            IEnumerable<IModeAction<Clock>> actions = from _action in _actions
                                                            where _action.Name == actionName
                                                            select _action;
             if (!actions.Any())
                 throw new ArgumentException($"Action {actionName} does not exist");
 
-            IModeAction<TimeOffset> action = actions.First();
-            action.Execute(_timeOffset);
+
+            IModeAction<Clock> action = actions.First();
+            action.Execute(_clock);
         }
         public void ActivateAction(int action)
         {
-            _actions[action].Execute(_timeOffset);
+            _actions[action].Execute(_clock);
             dataChanged?.Invoke();
         }
 
@@ -51,6 +52,10 @@ namespace Watch.Modes
                 actionNames.Add(action.Name);
             }
             return actionNames;
+        }
+        public void AddAction(IModeAction<Clock> action)
+        {
+            _actions.Add(action);
         }
         public override string ToString()
         {

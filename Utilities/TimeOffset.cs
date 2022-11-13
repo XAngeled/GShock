@@ -1,4 +1,4 @@
-﻿namespace Watch
+﻿namespace Utilities
 {
     /// <summary>
     /// Represents an offset of time. Made in order to send TimeSpan as ref.
@@ -18,6 +18,15 @@
         public TimeOffset(DateTime dateTime)
         {
             Offset = dateTime - DateTime.Now;
+        }
+        public void ResetOffset()
+        {
+            Offset = TimeSpan.Zero;
+        }
+        public static TimeOffset operator+(TimeOffset obj, TimeSpan timeDifference)
+        {
+            obj.Offset += timeDifference;
+            return obj;
         }
     }
 }
