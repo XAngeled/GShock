@@ -14,16 +14,31 @@ namespace GShock.Data
         {
             _watch = watch;
             _renderers = renderers;
+            _watch.dataChanged += UpdateOutput;
             if (_watch.CurrentMode != null)
             {
                 Output = _renderers[_watch.CurrentMode.GetType()].Render();
+                OutputHasChanged?.Invoke();
             }
         }
 
         public void CycleMode()
         {
             _watch.CycleMode();
+            if (_watch.CurrentMode != null)
+            {
+                Output = _renderers[_watch.CurrentMode.GetType()].Render();
+                OutputHasChanged?.Invoke();
+            }
         }
 
+        public void UpdateOutput()
+        {
+            if (_watch.CurrentMode != null)
+            {
+                Output = _renderers[_watch.CurrentMode.GetType()].Render();
+                OutputHasChanged?.Invoke();
+            }
+        }
     }
 }
