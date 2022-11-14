@@ -2,9 +2,6 @@
 
 namespace Watch
 {
-    /// <summary>
-    /// Represents a watch that contains different modes. Each mode is assigned data and actions that affect the data.
-    /// </summary>
     public class Watch
     {
         public event Action? dataChanged;

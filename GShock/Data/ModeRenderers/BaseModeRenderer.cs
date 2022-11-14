@@ -4,7 +4,7 @@ using Watch.Modes;
 
 namespace GShock.Data.ModeRenderers
 {
-    public abstract class BaseModeRenderer<TMode> where TMode : IMode
+    public abstract class BaseModeRenderer
     {
         protected abstract void BuildRenderTree(RenderTreeBuilder builder);
         public RenderFragment Render()

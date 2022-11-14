@@ -2,7 +2,7 @@
 using Watch.Modes;
 using Watch.Modes.Actions;
 using Watch.Modes.Actions.CounterActions;
-using Watch.Modes.Actions.TimeOffsetActions;
+using Watch.Modes.Actions.ClockActions;
 
 namespace Watch
 {
@@ -13,8 +13,8 @@ namespace Watch
             return new Watch(new List<IMode>
             {
                 new TimeMode(
-                    new TimeOffset(),
-                    new List<IModeAction<TimeOffset>>
+                    new Clock(new TimeOffset()),
+                    new List<IModeAction<Clock>>
                     {
                         new AddSecondAction(),
                         new AddMinuteAction(),

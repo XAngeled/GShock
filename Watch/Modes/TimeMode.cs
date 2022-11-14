@@ -11,17 +11,15 @@ namespace Watch.Modes
 
         private readonly double _updateInterval;
         private readonly System.Timers.Timer _outputUpdater;
-        private readonly TimeOffset _timeOffset;
-        private Clock _clock;
+        public Clock Time;
         private List<IModeAction<Clock>> _actions;
 
-        public TimeMode(TimeOffset timeOffset, List<IModeAction<Clock>> actions, double updateInterval, Clock clock)
+        public TimeMode(Clock clock, List<IModeAction<Clock>> actions, double updateInterval)
         {
             Name = "Time";
-            _timeOffset = timeOffset;
             _actions = actions;
             _updateInterval = updateInterval;
-            _clock = clock;
+            Time = clock;
             _outputUpdater = new System.Timers.Timer(_updateInterval);
             InitializeTimer();
         }
@@ -36,11 +34,11 @@ namespace Watch.Modes
 
 
             IModeAction<Clock> action = actions.First();
-            action.Execute(_clock);
+            action.Execute(Time);
         }
         public void ActivateAction(int action)
         {
-            _actions[action].Execute(_clock);
+            _actions[action].Execute(Time);
             dataChanged?.Invoke();
         }
 
@@ -60,7 +58,7 @@ namespace Watch.Modes
         public override string ToString()
         {
 
-            return (TimeOnly.FromDateTime(DateTime.Now + _timeOffset.Offset)).ToString("HH:mm:ss.fff");
+            return Time.ToString();
         }
 
         private void UpdateOutput(object? sender, ElapsedEventArgs e)

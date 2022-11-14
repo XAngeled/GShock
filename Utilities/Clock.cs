@@ -20,5 +20,9 @@
         {
             _offset.ResetOffset();
         }
+        public override string ToString()
+        {
+            return (TimeOnly.FromDateTime(DateTime.Now + _offset.Offset)).ToString("HH:mm:ss.fff");
+        }
     }
 }
