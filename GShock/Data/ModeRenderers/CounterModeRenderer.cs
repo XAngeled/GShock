@@ -5,11 +5,11 @@ using Watch.Modes;
 
 namespace GShock.Data.ModeRenderers
 {
-    public class TimeModeRenderer : BaseModeRenderer
+    public class CounterModeRenderer : BaseModeRenderer
     {
-        private TimeMode _mode;
+        private CounterMode _mode;
         private SimpleModeButtonsStrategy _buttonsStrategy;
-        public TimeModeRenderer(TimeMode mode)
+        public CounterModeRenderer(CounterMode mode)
         {
             _mode = mode;
             _buttonsStrategy = new SimpleModeButtonsStrategy();
@@ -17,13 +17,12 @@ namespace GShock.Data.ModeRenderers
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            List<IButton> buttons = _buttonsStrategy.GetButtons(_mode);
             builder.OpenElement(0, "div");
             builder.OpenElement(1, "h2");
-            builder.AddContent(2, _mode.Time.ToString());
+            builder.AddContent(2, _mode.CounterData.ToString());
             builder.CloseElement();
             builder.OpenComponent(3, typeof(ModeButtons));
-            builder.AddAttribute(4, "Buttons", buttons);
+            builder.AddAttribute(4, "Buttons",_buttonsStrategy.GetButtons(_mode));
             builder.CloseComponent();
             builder.CloseElement();
         }

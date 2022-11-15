@@ -1,15 +1,14 @@
 ﻿using System.Diagnostics;
+using Watch.Modes.Data;
 
 namespace Watch.Modes
 {
     public class StopperMode
     {
-        private Stopwatch _stopwatch;
-        private List<TimeSpan> _Results;
+        Stopper data;
         public StopperMode(Stopwatch stopwatch)
         {
-            _stopwatch = stopwatch;
-            _Results = new List<TimeSpan>();
+            data = new StopperModeData(stopwatch);
         }
     }
 }

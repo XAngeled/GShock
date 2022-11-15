@@ -10,7 +10,7 @@ namespace Watch.Modes
     {
         public event Action? dataChanged;
         private List<IModeAction<Counter>> _actions;
-        private Counter _counter;
+        public Counter CounterData;
 
         public string Name { get; set; }
 
@@ -18,7 +18,7 @@ namespace Watch.Modes
         {
             Name = "Counter";
             _actions = actions;
-            _counter = counter;
+            CounterData = counter;
         }
 
         public void ActivateAction(string actionName)
@@ -32,12 +32,12 @@ namespace Watch.Modes
             IModeAction<Counter> action = (from _action in _actions
                                               where _action.Name == actionName
                                               select _action).First();
-            action.Execute(_counter);
+            action.Execute(CounterData);
         }
 
         public void ActivateAction(int action)
         {
-            _actions[action].Execute(_counter);
+            _actions[action].Execute(CounterData);
             dataChanged?.Invoke();
         }
 
@@ -53,7 +53,7 @@ namespace Watch.Modes
 
         public override string ToString()
         {
-            return _counter.ToString();
+            return CounterData.ToString();
         }
     }
 }

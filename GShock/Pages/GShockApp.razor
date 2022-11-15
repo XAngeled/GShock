@@ -2,14 +2,11 @@
 @page "/"
 <div style="text-align: center;">
     <h1 style="font-family: 'Arial Rounded MT'; font-size:5rem; color: #548687;">GSHOCK</h1>
-    <h2 class="output" style="font-size:20px">Mode: @watch.CurrentMode.Name</h2>
+    <h2 class="output" style="font-size:20px">Mode: @_watchUI.WatchToShow.CurrentMode.Name</h2>
     <br />
     @_modeOutput
     <br /><br /><br />
     <button class="button-cycle" @onclick=CycleMode>Cycle mode</button>
-    <div>
-        <ModeButtons Buttons=selectedModeButtons></ModeButtons>
-    </div>
     <br />
 
 </div>
@@ -19,45 +16,27 @@
 
 @code {
     public List<IButton> selectedModeButtons;
-    private Watch watch;
-    private string output;
-    private ModeButtonsFactory buttonsFactory;
     private RenderFragment _modeOutput;
     private WatchUI _watchUI;
-
-    private ModeButtonsFactory BootstrapFactory()
-    {
-        return new ModeButtonsFactory(
-            new Dictionary<Type, IModeButtonsStrategy>() 
-            {
-                { typeof(TimeMode), new SimpleModeButtonsStrategy() },
-                { typeof(CounterMode), new SimpleModeButtonsStrategy() }
-            }
-        );
-    }
-
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        buttonsFactory = BootstrapFactory();
-        watch = WatchFactory.Build();
-        output = watch.ToString();
-        watch.dataChanged += UpdateOutput;
-        selectedModeButtons = buttonsFactory.GetButtons(watch.CurrentMode);
+        var bootstrapper = new WatchUIBootstrapper();
+        _watchUI = bootstrapper.Bootstrap();
+        _watchUI.OutputHasChanged += UpdateOutput;
+        _modeOutput = _watchUI.Output;
 
     }
 
     private void UpdateOutput()
     {
-        output = watch.ToString();
-
         InvokeAsync(StateHasChanged);
     }
 
     private void CycleMode()
     {
-        watch.CycleMode();
-        selectedModeButtons = buttonsFactory.GetButtons(watch.CurrentMode);
+        _watchUI.CycleMode();
+        _modeOutput = _watchUI.Output;
     }
 }
